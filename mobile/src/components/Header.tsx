@@ -1,24 +1,34 @@
 //NATIVE BASE
-import { Center, Text } from 'native-base'
+import { Text, HStack, Box } from 'native-base'
 
+//PHOSPHOR ICON
+import { CaretLeft, Export } from 'phosphor-react-native'
+
+//COMPONENTE
+import { ButtonIcon } from './ButtonIcon'
 
 interface HeaderProps {
   title: string
-  arrow?: boolean
+  backButton?: boolean
+  shareButton?: boolean
 }
 
-export function Header({arrow=false, ...props}: HeaderProps) {
+export function Header({ backButton = false, shareButton = false, ...props }: HeaderProps) {
+  const EmptyBoxSpace = () => <Box w={6} h={6} />
+
   return (
-    <Center 
-      
-      width='full'
-      paddingY={35}
-      bgColor='gray.800'
-      {...props}
-    >
-      <Text color='white' fontSize={16}>
-        {props.title}
-      </Text>
-    </Center>
+    <HStack w="full" h={24} bgColor="gray.800" alignItems="flex-end" pb={5} px={5}>
+      <HStack w="full" alignItems="center" justifyContent="space-between">
+
+        {backButton ? <ButtonIcon icon={CaretLeft} /> : <EmptyBoxSpace />}
+
+        <Text textAlign="center" color="white" fontSize={16} fontFamily="medium">
+          {props.title}
+        </Text>
+
+        {shareButton ? <ButtonIcon icon={Export} /> : <EmptyBoxSpace />}
+
+      </HStack>
+    </HStack>
   )
 }

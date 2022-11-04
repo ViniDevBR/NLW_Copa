@@ -1,21 +1,18 @@
 //NATIVE BASE
-import { Text, Button, IButtonProps } from 'native-base'
+import { Text, Button as Botão, IButtonProps } from 'native-base'
 
 interface ButtonProps extends IButtonProps {
   title: string
   type?: 'primary' | 'secondary'
 }
 
-export function Buttons({ type = 'primary', ...props }: ButtonProps) {
+export function Button({ type = 'primary', ...props }: ButtonProps) {
   return (
-    <Button
+    <Botão
       h={14} 
-      width='xs'
-      marginTop={50}
-      marginBottom={5}
+      width='full'
       rounded="sm"
       fontSize="md"
-      textTransform="uppercase"
       bgColor={type === 'secondary' ? 'red.500' : 'yellow.500'}
       _pressed={{ bgColor: 'black' }}
       _loading={{
@@ -23,9 +20,9 @@ export function Buttons({ type = 'primary', ...props }: ButtonProps) {
       }}
       {...props}
     >
-      <Text color={type === 'secondary' ? 'white' : 'black'}>
+      <Text textTransform="uppercase" color={type === 'secondary' ? 'white' : 'black'}>
         {props.title}
       </Text>
-    </Button>
+    </Botão>
   )
 }
