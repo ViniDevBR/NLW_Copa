@@ -13,6 +13,8 @@ import {
 //COMPONENTE
 import { Loading } from './src/components/Loading'
 import { SignIn } from './src/screens/SignIn'
+import { FindPool } from './src/screens/FindPool'
+import { Pools } from './src/screens/Pools'
 import { NewPool } from './src/screens/NewPool'
 
 //CONTEXT
@@ -33,7 +35,7 @@ export default function App() {
           barStyle="light-content"
           backgroundColor="transparent"
         />
-        {fontsLoaded ? <SignIn /> : <Loading />}
+        {fontsLoaded ? <Pools /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   )
