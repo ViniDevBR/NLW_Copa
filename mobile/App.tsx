@@ -13,6 +13,10 @@ import {
 //COMPONENTE
 import { Loading } from './src/components/Loading'
 import { SignIn } from './src/screens/SignIn'
+import { NewPool } from './src/screens/NewPool'
+
+//CONTEXT
+import { AuthContextProvider } from './src/contexts/AuthContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,14 +27,14 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <Center flex={1} bgColor="gray.900">
-        {fontsLoaded ? <SignIn /> : <Loading />}
+      <AuthContextProvider>
         <StatusBar
           translucent
           barStyle="light-content"
           backgroundColor="transparent"
         />
-      </Center>
+        {fontsLoaded ? <SignIn /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   )
 }
