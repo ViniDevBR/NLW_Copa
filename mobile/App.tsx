@@ -12,6 +12,8 @@ import {
 
 //COMPONENTE
 import { Loading } from './src/components/Loading'
+
+//SCREEN
 import { SignIn } from './src/screens/SignIn'
 import { FindPool } from './src/screens/FindPool'
 import { Pools } from './src/screens/Pools'
