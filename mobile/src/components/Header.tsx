@@ -8,8 +8,14 @@ interface HeaderProps {
 
 export function Header({arrow=false, ...props}: HeaderProps) {
   return (
-    <Center bgColor='gray.800'>
-      <Text>
+    <Center 
+      
+      width='full'
+      paddingY={35}
+      bgColor='gray.800'
+      {...props}
+    >
+      <Text color='white' fontSize={16}>
         {props.title}
       </Text>
     </Center>

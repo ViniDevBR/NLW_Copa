@@ -1,15 +1,15 @@
-import { Text, Button as Botão, IButtonProps } from 'native-base'
+import { Text, Button, IButtonProps } from 'native-base'
 
 interface ButtonProps extends IButtonProps {
   title: string
   type?: 'primary' | 'secondary'
 }
 
-export function Button({ type = 'primary', ...props }: ButtonProps) {
+export function Buttons({ type = 'primary', ...props }: ButtonProps) {
   return (
-    <Botão
-      h={14}
-      w='FULL'
+    <Button
+      h={14} 
+      width='xs'
       marginTop={50}
       marginBottom={5}
       rounded="sm"
@@ -25,6 +25,6 @@ export function Button({ type = 'primary', ...props }: ButtonProps) {
       <Text color={type === 'secondary' ? 'white' : 'black'}>
         {props.title}
       </Text>
-    </Botão>
+    </Button>
   )
 }
