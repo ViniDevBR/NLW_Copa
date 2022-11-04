@@ -1,4 +1,7 @@
+//NATIVE BASE
 import { Center, Text, VStack } from 'native-base'
+
+//COMPONENTE
 import { Header } from '../components/Header'
 import Logo from '../assets/logo.svg'
 

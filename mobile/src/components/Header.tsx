@@ -1,3 +1,4 @@
+//NATIVE BASE
 import { Center, Text } from 'native-base'
 
 

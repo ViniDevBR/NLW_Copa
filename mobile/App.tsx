@@ -1,5 +1,5 @@
 //EXPO & REACT
-import { Center, NativeBaseProvider, StatusBar } from 'native-base'
+import { NativeBaseProvider, StatusBar } from 'native-base'
 
 //STYLE
 import { THEME } from './src/styles/theme'

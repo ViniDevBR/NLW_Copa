@@ -1,10 +1,8 @@
 //NATIVE BASE
 import { Center, Text, Icon } from 'native-base'
 
-//OTHERS
-import Logo from '../assets/logo.svg';
-
 //COMPONENTE
+import Logo from '../assets/logo.svg';
 import { Buttons } from '../components/Button';
 import { Fontisto } from '@expo/vector-icons'
 
