@@ -3,7 +3,7 @@ import { Center, Text, Icon } from 'native-base'
 
 //COMPONENTE
 import Logo from '../assets/logo.svg';
-import { Buttons } from '../components/Button';
+import { Button } from '../components/Button';
 import { Fontisto } from '@expo/vector-icons'
 
 //HOOK
@@ -19,11 +19,13 @@ export function SignIn() {
   return (
     <Center flex={1} bgColor="gray.900">
       <Logo width={400} height={45} />
-      <Buttons 
+      <Button
         leftIcon={<Icon as={Fontisto} name='google' color='white' size='md'/>}
         title='ENTRAR COM O GOOGLE' 
         type='secondary'
         onPress={signIn}
+        marginTop={50}
+        marginBottom={5}
       />
       <Text color="gray.200" fontSize='sm' width={280} textAlign='center' fontFamily='heading'>
         Não utilizamos nenhuma informação além do seu e-mail para criação de sua conta.
