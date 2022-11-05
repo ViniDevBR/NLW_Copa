@@ -1,6 +1,6 @@
 # TECNOLOGIAS
 <p align="center">
-    <img src="https://skillicons.dev/icons?i=react,ts,tailwind,nodejs,sqlite,git" />
+    <img src="https://skillicons.dev/icons?i=react,next,ts,tailwind,nodejs,sqlite,git" />
 </p>
 
 ## Instalação
