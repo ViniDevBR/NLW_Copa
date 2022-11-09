@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         sans: 'Roboto, sans-serif'
       },
+      backgroundImage: {
+        effects: 'url(/BG-effects.png)'
+      },
       colors: {
         slate: {
           950: '#202024'
