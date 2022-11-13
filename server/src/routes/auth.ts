@@ -13,7 +13,7 @@ export async function authRoutes(fastify: FastifyInstance){
     const userResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
       method: 'GET',
       headers: {
-        Authorization: `Beares ${access_token}`
+        Authorization: `Bearer ${access_token}`,
       }
     })
 

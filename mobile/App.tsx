@@ -37,7 +37,7 @@ export default function App() {
           barStyle="light-content"
           backgroundColor="transparent"
         />
-        {fontsLoaded ? <Pools /> : <Loading />}
+        {fontsLoaded ? <SignIn /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   )
