@@ -1,9 +1,15 @@
 import { prisma } from "../lib/prisma"
 import { FastifyInstance } from "fastify"
 import { z } from "zod"
+import { authenticate } from '../plugins/authenticate'
 
 export async function authRoutes(fastify: FastifyInstance){
-  
+  fastify.get('/me', {onRequest: [authenticate]}, async (request) => {
+    
+
+    return { user: request.user }
+  })
+
   fastify.post('/users', async (request) => {
     const createUsersBody = z.object({
       access_token: z.string(),
@@ -35,15 +41,13 @@ export async function authRoutes(fastify: FastifyInstance){
       }
     })
 
-    if (!user) {
-      user = prisma.user.create({
+   if (!user) {
+      user = await prisma.user.create({
         data: {
           googleId: userInfo.id,
           name: userInfo.name,
-          avatarUrl: userInfo.picture,
           email: userInfo.email,
-          id: '123teste',
-          createdAt: ''
+          avatarUrl: userInfo.picture,
         }
       })
     }
