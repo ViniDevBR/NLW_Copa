@@ -1,3 +1,4 @@
+import { prisma } from "../lib/prisma"
 import { FastifyInstance } from "fastify"
 import { z } from "zod"
 
@@ -28,6 +29,36 @@ export async function authRoutes(fastify: FastifyInstance){
 
     const userInfo = userInfoSchema.parse(userData)
 
-    return { userInfo }
+    let user = await prisma.user.findUnique({
+      where: {
+        googleId: userInfo.id,
+      }
+    })
+
+    if (!user) {
+      user = prisma.user.create({
+        data: {
+          googleId: userInfo.id,
+          name: userInfo.name,
+          avatarUrl: userInfo.picture,
+          email: userInfo.email,
+          id: '123teste',
+          createdAt: ''
+        }
+      })
+    }
+
+    const token = fastify.jwt.sign(
+      {
+        name: user?.name,
+        avatarUrl: user?.avatarUrl
+      },
+      {
+        sub: user?.id,
+        expiresIn: '1 day'
+      }
+    )
+
+    return { token }
   })
 }

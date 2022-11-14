@@ -1,7 +1,7 @@
 //FASTIFY
 import Fastify from "fastify";
-import fastifyCors from "@fastify/cors";
-
+import cors from "@fastify/cors";
+import jwt from '@fastify/jwt'
 
 
 //ROUTES
@@ -17,8 +17,12 @@ async function bootstrap() {
     logger: true
   })
 
-  await fastify.register(fastifyCors, {
+  await fastify.register(cors, {
     origin: true
+  })
+
+  await fastify.register(jwt, {
+    secret: 'secretFromJWT'
   })
   
   fastify.register(authRoutes)
