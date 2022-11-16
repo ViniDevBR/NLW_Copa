@@ -10,11 +10,12 @@ interface HeaderProps {
   title: string
   backButton?: boolean
   shareButton?: boolean
+  onShare?: () => void;
 }
 
 export function Header({ backButton = false, shareButton = false, ...props }: HeaderProps) {
   const EmptyBoxSpace = () => <Box w={6} h={6} />
-  const {navigate} = useNavigation()
+  const { navigate } = useNavigation()
 
   return (
     <HStack w="full" h={24} bgColor="gray.800" alignItems="flex-end" pb={5} px={5}>
@@ -26,7 +27,7 @@ export function Header({ backButton = false, shareButton = false, ...props }: He
           {props.title}
         </Text>
 
-        {shareButton ? <ButtonIcon icon={Export} /> : <EmptyBoxSpace />}
+        {shareButton ? <ButtonIcon icon={Export} onPress={props.onShare}/> : <EmptyBoxSpace />}
 
       </HStack>
     </HStack>
