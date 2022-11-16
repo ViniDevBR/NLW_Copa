@@ -1,10 +1,12 @@
 //REACT
 import { createContext, ReactNode, useState, useEffect } from 'react'
-
 //EXPO
 import * as Google from 'expo-auth-session/providers/google';
 import * as AuthSession from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
+//BACK END
+import { API } from '../services/api'
+
 
 WebBrowser.maybeCompleteAuthSession()
 
@@ -40,21 +42,39 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     try {
       setUserIsLoading(true)
       await promptAsync()
+
     } catch (error) {
       console.log(error)
       throw error
+      
     } finally {
       setUserIsLoading(false)
     }
   }
   
-  async function SignInWithGoogle(access_token: string) {
-   console.log('TOKEN =>', access_token) 
+  async function singInWithGoogle(access_token: string) {
+    try {
+      setUserIsLoading(true);
+      
+      const tokenResponse = await API.post('/users', { access_token });
+      API.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data.token}`;
+
+      const userInfoResponse = await API.get('/me');
+      setUser(userInfoResponse.data.user);
+
+    } catch (error) {
+
+      console.log(error);
+      throw error;
+
+    } finally {
+      setUserIsLoading(false);
+    }
   }
 
   useEffect(() => {
     if (response?.type === 'success' && response.authentication?.accessToken) {
-      SignInWithGoogle(response.authentication.accessToken)
+      singInWithGoogle(response.authentication.accessToken)
     }
   },[response])
 
@@ -64,10 +84,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         signIn,
         isUserLoading,
         user,
-        // : {
-        //   name: 'Vinicius',
-        //   avatarUrl: 'https://github.com/vinidevbr.png'
-        // }
       }}
     >
       {children}
