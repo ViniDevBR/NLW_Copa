@@ -13,11 +13,8 @@ import {
 //COMPONENTE
 import { Loading } from './src/components/Loading'
 
-//SCREEN
-import { SignIn } from './src/screens/SignIn'
-import { FindPool } from './src/screens/FindPool'
-import { Pools } from './src/screens/Pools'
-import { NewPool } from './src/screens/NewPool'
+//SCREENS
+import { Routes } from './src/routes'
 
 //CONTEXT
 import { AuthContextProvider } from './src/contexts/AuthContext';
@@ -37,7 +34,7 @@ export default function App() {
           barStyle="light-content"
           backgroundColor="transparent"
         />
-        {fontsLoaded ? <SignIn /> : <Loading />}
+        {fontsLoaded ? <Routes /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   )
