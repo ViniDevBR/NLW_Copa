@@ -3,10 +3,10 @@ import { FastifyInstance } from "fastify"
 import { z } from "zod"
 import { authenticate } from '../plugins/authenticate'
 
-export async function authRoutes(fastify: FastifyInstance){
+export async function authRoutes(fastify: FastifyInstance) {
   fastify.get('/me', {onRequest: [authenticate]}, async (request) => {
     
-
+    
     return { user: request.user }
   })
 
@@ -30,7 +30,7 @@ export async function authRoutes(fastify: FastifyInstance){
       id: z.string(),
       email: z.string().email(),
       name: z.string(),
-      picture: z.string().url() 
+      picture: z.string().url()
     })
 
     const userInfo = userInfoSchema.parse(userData)
@@ -41,7 +41,7 @@ export async function authRoutes(fastify: FastifyInstance){
       }
     })
 
-   if (!user) {
+    if (!user) {
       user = await prisma.user.create({
         data: {
           googleId: userInfo.id,
@@ -53,15 +53,14 @@ export async function authRoutes(fastify: FastifyInstance){
     }
 
     const token = fastify.jwt.sign(
-      {
-        name: user?.name,
-        avatarUrl: user?.avatarUrl
-      },
-      {
-        sub: user?.id,
-        expiresIn: '1 day'
-      }
-    )
+    {
+      name: user.name,
+      avatarUrl: user.avatarUrl,
+    }, 
+    {
+      sub: user.id,
+      expiresIn: '7 days'
+    })
 
     return { token }
   })

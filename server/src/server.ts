@@ -2,13 +2,11 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import jwt from '@fastify/jwt'
-
-
 //ROUTES
-import { poolRoutes } from "./routes/pool";
-import { userRoutes } from "./routes/users";
-import { guessRoutes } from "./routes/guess";
 import { authRoutes } from "./routes/auth";
+import { userRoutes } from "./routes/users";
+import { poolRoutes } from "./routes/pool";
+import { guessRoutes } from "./routes/guess";
 import { gameRoutes } from "./routes/game";
 
 
@@ -25,11 +23,11 @@ async function bootstrap() {
     secret: 'secretFromJWT'
   })
   
-  fastify.register(authRoutes)
-  fastify.register(gameRoutes)
-  fastify.register(poolRoutes)
-  fastify.register(userRoutes)
-  fastify.register(guessRoutes)
+  await fastify.register(authRoutes)
+  await fastify.register(gameRoutes)
+  await fastify.register(poolRoutes)
+  await fastify.register(userRoutes)
+  await fastify.register(guessRoutes)
 
   await fastify.listen({ port: 4444, host: '0.0.0.0' })
 }
