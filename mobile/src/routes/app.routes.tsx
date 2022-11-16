@@ -1,18 +1,15 @@
 //REACT
 import { Platform } from 'react-native';
-
 //REACT MAVIGATION
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
 //PHOSPHOR ICONS
 import { PlusCircle, SoccerBall } from 'phosphor-react-native'
-
 //SCREENS
 import { NewPool } from '../screens/NewPool';
 import { Pools } from '../screens/Pools';
-
 //HOOKS
 import { useTheme } from 'native-base';
+import { FindPool } from '../screens/FindPool';
 
 
 const {Screen, Navigator} = createBottomTabNavigator()
@@ -35,22 +32,29 @@ export function AppRoutes() {
       },
       tabBarItemStyle: {
         position: 'relative',
-        top: Platform.OS === 'android' ? -10: 0
+        top: Platform.OS === 'android' ? 0 : -10
       }
     }}>
       <Screen 
-        options={{
-          tabBarIcon: ({ color }) => <PlusCircle color={color} size={size} />
-        }} 
-        name="New Poll" 
+        name="New" 
         component={NewPool} 
+        options={{
+          tabBarIcon: ({ color }) => <PlusCircle color={color} size={size} />,
+          tabBarLabel: 'Novo Bolão'
+        }} 
       />
       <Screen 
-        options={{
-          tabBarIcon: ({ color }) => <SoccerBall color={color} size={size} />
-        }} 
         name="Polls" 
         component={Pools} 
+        options={{
+          tabBarIcon: ({ color }) => <SoccerBall color={color} size={size} />,
+          tabBarLabel: 'Meus Bolões'
+        }} 
+      />
+      <Screen 
+        name="Find" 
+        component={FindPool} 
+        options={{ tabBarButton: () => null }} 
       />
     </Navigator>
   );
